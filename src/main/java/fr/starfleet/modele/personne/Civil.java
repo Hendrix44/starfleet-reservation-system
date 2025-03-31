@@ -94,7 +94,13 @@ public class Civil extends Personne {
     public String getDescription(){
         return "Civil : " + getNom() + " " + getPrenom() + " " + getIdentifiant() + " " + getPlanète_origine() + " " + getMotif_voyage() ;
     }
-    
+
+    @Override
+    public String toString() {
+        return super.toString();  // Si Civil n'a pas de spécificité supplémentaire
+    }
+
+
 
 
 
