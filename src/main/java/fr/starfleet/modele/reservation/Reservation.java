@@ -2,6 +2,7 @@ package main.java.fr.starfleet.modele.reservation;
 import java.util.Date;
 import main.java.fr.starfleet.modele.personne.Personne ;
 import main.java.fr.starfleet.modele.mission.Mission ;
+import java.io.Serializable;
 
 /**
  * La classe Reservation représente une réservation effectuée par un passager pour une mission spécifique.
@@ -9,7 +10,7 @@ import main.java.fr.starfleet.modele.mission.Mission ;
  * ainsi que l'état de confirmation et d'annulation de la réservation.
  */
 
-public class Reservation {
+public class Reservation implements Serializable{
     private String idReservation;
     private Personne passager ;
     private Mission mission ;

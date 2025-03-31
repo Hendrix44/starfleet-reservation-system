@@ -1,4 +1,5 @@
 package main.java.fr.starfleet.modele.personne;
+import java.io.Serializable;
 
 
 /**
@@ -7,7 +8,7 @@ package main.java.fr.starfleet.modele.personne;
  * Les classes spécifiques comme Officier ou Civil hériteront de cette classe et ajouteront
  * leurs propres attributs et comportements.
  */
-public abstract class Personne {
+public abstract class Personne  implements Serializable{
 
 
     private String nom;

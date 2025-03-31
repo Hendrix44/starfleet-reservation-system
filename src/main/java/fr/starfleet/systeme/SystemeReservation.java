@@ -4,6 +4,7 @@ import main.java.fr.starfleet.modele.mission.Mission;
 import main.java.fr.starfleet.modele.personne.Personne;
 import main.java.fr.starfleet.modele.reservation.Reservation;
 import main.java.fr.starfleet.modele.vaisseau.Vaisseau;
+import java.io.Serializable;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ import java.util.UUID;
  * Elle permet de gérer les vaisseaux, les personnes, les missions, les réservations,
  * ainsi que d'effectuer des recherches et de sauvegarder ou charger les données.
  */
-public class SystemeReservation {
+public class SystemeReservation implements Serializable {
 
     private List<Vaisseau> vaisseaux;
     private List<Personne> personnes;
@@ -101,35 +102,54 @@ public class SystemeReservation {
      * @return La réservation effectuée ou null si la réservation a échoué.
      */
     public Reservation effectuerReservation(String idPersonne) {
-        // Chercher la personne avec l'ID fourni
+        // Vérifier si la personne existe
         Personne personne = rechercherPersonneParId(idPersonne);
         if (personne == null) {
             System.out.println("Personne non trouvée.");
             return null;
         }
 
-        // Chercher une mission disponible (qui n'est pas pleine)
+        // Trouver une mission disponible
         Mission missionDisponible = rechercherMissionDisponible();
         if (missionDisponible == null) {
             System.out.println("Aucune mission disponible.");
             return null;
         }
 
-        // Créer un ID unique pour la réservation
+        // Générer un identifiant unique pour la réservation
         String idReservation = UUID.randomUUID().toString();
-        Date dateReservation = new Date();  // Date de la réservation
+        Date dateReservation = new Date();
 
         // Créer la réservation
-        Reservation nouvelleReservation = new Reservation(idReservation, personne, missionDisponible, dateReservation, false);  // false => Non confirmée
+        Reservation nouvelleReservation = new Reservation(idReservation, personne, missionDisponible, dateReservation, false);
 
-        // Ajouter la réservation à la liste globale des réservations et à la mission
-        reservations.add(nouvelleReservation);
-        missionDisponible.getReservations().add(nouvelleReservation);
+        // Ajouter aux listes
+        reservations.add(nouvelleReservation); // Ajout à la liste principale des réservations
+        missionDisponible.getReservations().add(nouvelleReservation); // Ajout à la mission
 
-        // Confirmation de la réservation
+        // Vérifier que l'ajout s'est bien fait
         System.out.println("Réservation effectuée avec succès !");
+        System.out.println("Nombre total de réservations dans le système : " + reservations.size());
+
         return nouvelleReservation;
     }
+
+    /**
+     * Affiche la liste des réservations.
+     *
+     *
+     */
+    public void afficherReservations() {
+        if (reservations == null || reservations.isEmpty()) {
+            System.out.println("La liste des réservations est vide. Aucune réservation n'est disponible.");
+        } else {
+            System.out.println("\nListe des réservations : ");
+            for (Reservation reservation : reservations) {
+                System.out.println(reservation);
+            }
+        }
+    }
+
 
     /**
      * Recherche une personne par son identifiant dans la liste des personnes.
@@ -296,21 +316,8 @@ public class SystemeReservation {
         }
     }
 
-    /**
-     * Affiche la liste des réservations.
-     *
-     * @param reservations La liste des réservations à afficher.
-     */
-    public void afficherReservations(List<Reservation> reservations) {
-        if (reservations == null || reservations.isEmpty()) {
-            System.out.println("La liste des réservations est vide. Aucune réservation n'est disponible.");
-        } else {
-            System.out.println("\nListe des réservations : ");
-            for (Reservation reservation : reservations) {
-                System.out.println(reservation);
-            }
-        }
-    }
+
+
 
     /**
      * Affiche la liste des vaisseaux.

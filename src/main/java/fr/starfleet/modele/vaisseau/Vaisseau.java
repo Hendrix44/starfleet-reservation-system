@@ -2,12 +2,13 @@ package main.java.fr.starfleet.modele.vaisseau;
 import java.util.ArrayList;
 import java.util.List;
 import main.java.fr.starfleet.modele.mission.Mission;
+import java.io.Serializable;
 
 /**
  * La classe Vaisseau représente un vaisseau spatial avec des informations telles que le nom, l'immatriculation,
  * la capacité maximale du vaisseau, et les missions qui lui sont assignées.
  */
-public class Vaisseau {
+public class Vaisseau implements Serializable{
     private String nom;
     private String immatriculation;
     public int capaciteMaximale;

@@ -5,6 +5,7 @@ import main.java.fr.starfleet.modele.reservation.Reservation;
 import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
+import java.io.Serializable;
 
 /**
  * La classe Mission représente une mission spatiale avec des informations telles que le code de la mission,
@@ -12,7 +13,7 @@ import java.util.ArrayList;
  * la capacité maximale de la mission et les réservations associées à cette mission.
  */
 
-public class Mission {
+public class Mission implements Serializable {
     private String code;
     private String description;
     private Date dateDepart;

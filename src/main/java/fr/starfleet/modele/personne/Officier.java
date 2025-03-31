@@ -1,4 +1,5 @@
 package main.java.fr.starfleet.modele.personne;
+import java.io.Serializable;
 
 
 
@@ -6,7 +7,7 @@ package main.java.fr.starfleet.modele.personne;
  * La classe Officier hérite de la classe Personne et représente un officier dans le système.
  * Elle ajoute des attributs spécifiques à l'officier tels que le rang et la spécialité.
  */
-public class Officier extends Personne  {
+public class Officier extends Personne implements Serializable  {
     private String rang ;
     private String spécialité ;
 

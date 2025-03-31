@@ -1,11 +1,11 @@
 package main.java.fr.starfleet.modele.personne;
-
+import java.io.Serializable;
 /**
  * Représente un Civil, une sous-classe de Personne
  * Un Civil est caractérisé par sa planète d'origine et le motif de son voyage.
  */
 
-public class Civil extends Personne {
+public class Civil extends Personne implements Serializable {
     /**
      * La planète d'origine du civil.
      */

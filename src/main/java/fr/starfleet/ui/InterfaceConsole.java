@@ -263,7 +263,7 @@ public class InterfaceConsole {
         scanner.nextLine();
         switch (choix) {
             case 1:
-                systeme.afficherReservations(systeme.getReservations());
+                systeme.afficherReservations();
                 break;
             case 2:
                 System.out.print("ID de la personne : ");
